@@ -17284,29 +17284,29 @@ function providers(fhirServiceUrl, provider, callback, errback){
         "url": fhirServiceUrl,
         "oauth2": {
           "registration_uri": null,
-          "authorize_uri": null,
-          "token_uri": null
+          "authorize_uri": 'http://localhost:3000/auth/authorize',
+          "token_uri": 'http://localhost:3000/auth/token'
         }
       };
 
-      try {
-        var smartExtension = r.rest[0].security.extension.filter(function (e) {
-           return (e.url === "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris");
-        });
+      // try {
+      //   var smartExtension = r.rest[0].security.extension.filter(function (e) {
+      //      return (e.url === "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris");
+      //   });
 
-        smartExtension[0].extension.forEach(function(arg, index, array){
-          if (arg.url === "register") {
-            res.oauth2.registration_uri = arg.valueUri;
-          } else if (arg.url === "authorize") {
-            res.oauth2.authorize_uri = arg.valueUri;
-          } else if (arg.url === "token") {
-            res.oauth2.token_uri = arg.valueUri;
-          }
-        });
-      }
-      catch (err) {
-        return errback && errback(err);
-      }
+      //   smartExtension[0].extension.forEach(function(arg, index, array){
+      //     if (arg.url === "register") {
+      //       res.oauth2.registration_uri = arg.valueUri;
+      //     } else if (arg.url === "authorize") {
+      //       res.oauth2.authorize_uri = arg.valueUri;
+      //     } else if (arg.url === "token") {
+      //       res.oauth2.token_uri = arg.valueUri;
+      //     }
+      //   });
+      // }
+      // catch (err) {
+      //   return errback && errback(err);
+      // }
 
       callback && callback(res);
     }, function() {
