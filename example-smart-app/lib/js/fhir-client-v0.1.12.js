@@ -153,7 +153,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var $Paging = Middleware(query.$Paging);
 
 	        return decorate({
-	            conformance: GET.and(BaseUrl.slash("metadata")).end(http),
 	            document: POST.and(BaseUrl.slash("Document")).end(http),
 	            profile:  GET.and(BaseUrl.slash("Profile").slash(":type")).end(http),
 	            transaction: POST.and(BaseUrl).end(http),
