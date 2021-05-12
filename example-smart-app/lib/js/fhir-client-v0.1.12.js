@@ -17412,25 +17412,25 @@ BBClient.authorize = function(params, errback){
 };
 
 BBClient.resolveAuthType = function (fhirServiceUrl, callback, errback) {
-
-      Adapter.get().http({
-         method: "GET",
-         url: stripTrailingSlash(fhirServiceUrl) + "/metadata"
-      }).then(function(r){
-          var type = "none";
+      callback && callback("oauth2");
+      // Adapter.get().http({
+      //    method: "GET",
+      //    url: stripTrailingSlash(fhirServiceUrl) + "/metadata"
+      // }).then(function(r){
+      //     var type = "none";
           
-          try {
-            if (r.rest[0].security.service[0].coding[0].code.toLowerCase() === "smart-on-fhir") {
-                type = "oauth2";
-            }
-          }
-          catch (err) {
-          }
+      //     try {
+      //       if (r.rest[0].security.service[0].coding[0].code.toLowerCase() === "smart-on-fhir") {
+      //           type = "oauth2";
+      //       }
+      //     }
+      //     catch (err) {
+      //     }
 
-          callback && callback(type);
-        }, function() {
-           errback && errback("Unable to fetch conformance statement");
-      });
+      //     callback && callback(type);
+      //   }, function() {
+      //      errback && errback("Unable to fetch conformance statement");
+      // });
 };
 
 }).call(this,require('_process'))
